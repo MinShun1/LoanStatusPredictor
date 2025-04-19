@@ -13,8 +13,8 @@ import pickle
 import gzip
 import os
 
-if os.path.exists("LoanPredictor.pkl.gz"):
-    with gzip.open("LoanPredictor.pkl.gz", "rb") as f:
+if os.path.exists("model.pkl.gz"):
+    with gzip.open("model.pkl.gz", "rb") as f:
         model = pickle.load(f)
 else:
     st.error("File model 'LoanPredictor.pkl.gz' tidak ditemukan.")
