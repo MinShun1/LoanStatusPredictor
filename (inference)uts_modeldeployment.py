@@ -10,9 +10,12 @@ Original file is located at
 import streamlit as st
 import numpy as np
 import pickle
+import gzip
 
 # Memuat model dan scaler
-model = pickle.load(open("LoanPredictor.pkl", "rb"))
+with gzip.open("LoanPredictor.pkl.gz", "rb") as f:
+    model = pickle.load(f)
+    
 scaler = pickle.load(open("LoanScaler.pkl", "rb"))
 
 # Menyiapkan aplikasi Streamlit
