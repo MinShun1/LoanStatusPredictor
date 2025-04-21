@@ -17,6 +17,7 @@ from sklearn.metrics import confusion_matrix, classification_report, ConfusionMa
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 from sklearn.impute import SimpleImputer
+from imblearn.over_sampling import SMOTE
 
 class LoanModelTrainer:
     def __init__(self, df):
