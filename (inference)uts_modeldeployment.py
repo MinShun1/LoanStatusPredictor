@@ -35,7 +35,7 @@ with st.form("loan_form"):
     person_emp_exp = st.slider("Lama Bekerja (tahun)", 0, 40, 5)
     loan_amnt = st.number_input("Jumlah Pinjaman", min_value=100, value=10000)
     loan_int_rate = st.slider("Bunga Pinjaman (%)", 0.0, 40.0, 10.0)
-    loan_percent_income = st.slider("Persentase Pendapatan untuk Pinjaman (%)", 0.0, 1, 0.5)
+    loan_percent_income = st.slider("Persentase Pendapatan untuk Pinjaman (%)", 0.0, 1.0, 0.5)
     cb_person_cred_hist_length = st.slider("Lama Riwayat Kredit (tahun)", 0, 30, 5)
     credit_score = st.slider("Skor Kredit", 300, 850, 650)
     previous_loan_defaults_on_file = st.selectbox("Pernah Gagal Bayar Sebelumnya?", options=["Tidak", "Ya"])
