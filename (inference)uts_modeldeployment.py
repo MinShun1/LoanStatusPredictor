@@ -10,8 +10,16 @@ import streamlit as st
 import numpy as np
 import pickle
 
-model = pickle.load(open("LoanPredictor.pkl", "rb"))
-scaler = pickle.load(open("LoanScaler.pkl", "rb"))
+if os.path.exists("model.pkl.gz"):
+     with gzip.open("model.pkl.gz", "rb") as f:
+         model = pickle.load(f)
+ else:
+     st.error("File model 'LoanPredictor.pkl.gz' tidak ditemukan.")
+ 
+ if os.path.exists("LoanScaler.pkl"):
+     scaler = pickle.load(open("LoanScaler.pkl", "rb"))
+ else:
+     st.error("File scaler 'LoanScaler.pkl' tidak ditemukan.")
 
 st.set_page_config(page_title="Loan Status Prediction", layout="centered")
 st.title("💸 Loan Status Predictor")
