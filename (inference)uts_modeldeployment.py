@@ -9,6 +9,8 @@ Original file is located at
 import streamlit as st
 import numpy as np
 import pickle
+import gzip
+import os
 
 if os.path.exists("model.pkl.gz"):
      with gzip.open("model.pkl.gz", "rb") as f:
