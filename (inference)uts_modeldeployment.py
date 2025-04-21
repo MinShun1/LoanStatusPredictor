@@ -24,13 +24,11 @@ if os.path.exists("LoanScaler.pkl"):
 else:
     st.error("File scaler 'LoanScaler.pkl' tidak ditemukan.")
 
-# Menyiapkan aplikasi Streamlit
 st.set_page_config(page_title="Loan Status Prediction", layout="centered")
 st.title("💸 Loan Status Predictor")
 st.markdown("Masukkan informasi peminjam di bawah untuk memprediksi apakah pinjaman akan disetujui.")
 
 with st.form("loan_form"):
-    # Form input untuk pengguna
     person_age = st.slider("Usia", 18, 80, 30)
     person_gender = st.selectbox("Jenis Kelamin", options=["Laki-laki", "Perempuan"])
     person_education = st.selectbox("Tingkat Pendidikan", options=["Tidak diketahui", "SMA", "Sarjana", "Pascasarjana"])
@@ -43,17 +41,14 @@ with st.form("loan_form"):
     credit_score = st.slider("Skor Kredit", 300, 850, 650)
     previous_loan_defaults_on_file = st.selectbox("Pernah Gagal Bayar Sebelumnya?", options=["Tidak", "Ya"])
 
-    # Status Kepemilikan Rumah (One-hot)
     st.markdown("**Status Kepemilikan Rumah**")
     home_status = st.radio("", options=["MORTGAGE", "OTHER", "OWN", "RENT"])
     home_onehot = [1 if home_status == x else 0 for x in ["MORTGAGE", "OTHER", "OWN", "RENT"]]
 
-    # Tujuan Pinjaman (One-hot)
     st.markdown("**Tujuan Pinjaman**")
     loan_purpose = st.radio("", options=["DEBTCONSOLIDATION", "EDUCATION", "HOMEIMPROVEMENT", "MEDICAL", "PERSONAL", "VENTURE"])
     purpose_onehot = [1 if loan_purpose == x else 0 for x in ["DEBTCONSOLIDATION", "EDUCATION", "HOMEIMPROVEMENT", "MEDICAL", "PERSONAL", "VENTURE"]]
 
-    # Submit button
     submitted = st.form_submit_button("🔍 Prediksi")
 
 if submitted:
@@ -83,7 +78,7 @@ if submitted:
 
     # Prediksi dengan model
     prediction = model.predict(input_scaled)[0]
-    probability = model.predict_proba(input_scaled)[0][1]  # Probabilitas kelas 1
+    probability = model.predict_proba(input_scaled)[0][1] 
 
     # Menampilkan hasil prediksi
     if prediction == 1:
